@@ -1,10 +1,10 @@
 const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
 
 const { Game } = require("../models");
 
 router.get("/games", async (_, res) => {
-  res.json(await Game.findAll());
+  res.status(200).json(await Game.findAll());
 });
 
 router.post("/game", async (req, res) => {
@@ -28,7 +28,7 @@ router.put("/game/:id", async (req, res) => {
     }
   });
 
-  res.status(201).json(game);
+  res.status(204).json();
 });
 
 router.delete("/game", async (req, res) => {
@@ -38,7 +38,7 @@ router.delete("/game", async (req, res) => {
     }
   })
 
-  res.json(game);
+  res.status(204).json();
 });
 
 module.exports = router;
